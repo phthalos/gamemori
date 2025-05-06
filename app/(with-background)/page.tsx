@@ -5,7 +5,7 @@ import ButtonStart from "@/components/ui/button-start";
 export default function Home() {
     return (
         <>
-            <p className="text-6xl font-[pretendard_semibold] bg-linear-120 from-violet-50 via-violet-300 via-70% to-violet-400 text-transparent bg-clip-text mb-6 leading-16 text-center">
+            <p className="text-6xl font-semibold bg-linear-120 from-violet-50 via-violet-300 via-70% to-violet-400 text-transparent bg-clip-text mb-6 leading-16 text-center">
                 게임의 우주에서
                 <br />
                 숨겨진 보석을 찾아보세요
