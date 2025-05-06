@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 
 const pretendard = localFont({
     src: "../fonts/Pretendard-1.3.9/woff2/PretendardVariable.woff2",
@@ -20,8 +22,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="kr" className={`${pretendard.variable}`}>
-            <body className={`${pretendard.className} antialiased`}>{children}</body>
+        <html lang="kr" className={`${pretendard.variable} dark`}>
+            <body className={`${pretendard.className} antialiased`}>
+                <Header />
+                <div className="h-screen flex justify-center items-center">{children}</div>
+                <Footer />
+            </body>
         </html>
     );
 }
