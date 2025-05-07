@@ -23,7 +23,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "pretendard semibold";
+    font-family: "pretendard";
+    font-weight: 700;
 }
 
 h1 {

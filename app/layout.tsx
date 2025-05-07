@@ -25,7 +25,7 @@ export default function RootLayout({
         <html lang="kr" className={`${pretendard.variable} dark`}>
             <body className={`${pretendard.className} antialiased`}>
                 <Header />
-                <div className="h-screen flex justify-center items-center">{children}</div>
+                <div className="flex justify-center items-center">{children}</div>
                 <Footer />
             </body>
         </html>
