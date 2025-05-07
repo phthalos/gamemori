@@ -3,7 +3,7 @@ import FooterDivider from "./footer-divider";
 
 export default function Footer() {
     return (
-        <footer className="fixed w-full bottom-0 px-28 py-4 flex flex-col items-center justify-center gap-1.5 text-xs text-neutral-300/75">
+        <footer className="fixed w-full bottom-0 px-28 py-4 flex flex-col items-center justify-center gap-1 text-xs text-neutral-300/75">
             <ul className="flex gap-3 items-center">
                 <li>© 2025 gamemori. All Rights Reserved.</li>
                 <FooterDivider />
