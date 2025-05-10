@@ -1,13 +1,13 @@
-'use client';
-import FormInput from '@/components/form/form-input';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Slider } from '@/components/ui/slider';
-import { personalizelist } from '@/data/personalizelist';
-import React from 'react';
+"use client";
+import FormInput from "@/components/form/form-input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Slider } from "@/components/ui/slider";
+import { personalizelist } from "@/data/personalizelist";
+import React from "react";
 
 export default function Personalize() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,8 +44,8 @@ export default function Personalize() {
                                             <ul className='flex flex-col gap-2'>
                                                 {value.checkbox.map((item, checkboxindex) => (
                                                     <div key={checkboxindex} className='flex items-center space-x-2'>
-                                                        <Checkbox id={'checkbox' + checkboxindex.toString()} />
-                                                        <Label htmlFor={'checkbox' + checkboxindex.toString()}>
+                                                        <Checkbox id={"checkbox" + checkboxindex.toString()} />
+                                                        <Label htmlFor={"checkbox" + checkboxindex.toString()}>
                                                             {item.name}
                                                         </Label>
                                                     </div>
@@ -58,9 +58,9 @@ export default function Personalize() {
                                                     <div key={radioindex} className='flex items-center space-x-2'>
                                                         <RadioGroupItem
                                                             value={item.name}
-                                                            id={'radio' + radioindex.toString()}
+                                                            id={"radio" + radioindex.toString()}
                                                         />
-                                                        <Label htmlFor={'radio' + radioindex.toString()}>
+                                                        <Label htmlFor={"radio" + radioindex.toString()}>
                                                             {item.name}
                                                         </Label>
                                                     </div>
