@@ -16,6 +16,7 @@ export default function Personalize() {
         e.preventDefault();
         // 유효성 검사 구현
         console.log("사용자 응답:", answers);
+        localStorage.setItem("answer", JSON.stringify(answers));
     };
 
     const onCheckboxChange = (questionIndex: number, value: string, checked: boolean) => {
@@ -101,7 +102,7 @@ export default function Personalize() {
                         </li>
                     ))}
                 </ul>
-                <Button type="submit" className="float-right">
+                <Button href="/result" type="submit" className="float-right">
                     결과 보기
                 </Button>
             </form>
