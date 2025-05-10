@@ -33,7 +33,7 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
-        question: "좋아하는 그래픽 스타일은?",
+        question: "좋아하는 그래픽 스타일은 무엇인가요?",
         checkbox: [
             { name: "픽셀 아트", value: "pixel-art" },
             { name: "2D", value: "2d" },
@@ -70,7 +70,7 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
-        question: "선호하는 게임 플레이 시간은?",
+        question: "선호하는 게임 플레이 시간은 언제인가요?",
         radio: [
             { name: "10시간 이하 (짧고 간단한 게임)", value: "short" },
             { name: "10~30시간", value: "medium" },
@@ -88,7 +88,7 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
-        question: "게임에서 가장 중요하게 생각하는 요소는?",
+        question: "게임에서 가장 중요하게 생각하는 요소는 무엇인가요?",
         checkbox: [
             { name: "스토리", value: "story" },
             { name: "그래픽", value: "graphics" },
