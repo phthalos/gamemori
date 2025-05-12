@@ -1,11 +1,6 @@
 type PersonalizeListType = {
     question: string;
     key?: string;
-    slider?: {
-        defaultvalue: number;
-        max: number;
-        step: number;
-    };
     checkbox?: { name: string; value: string }[];
     radio?: { name: string; value: string }[];
     text?: boolean;

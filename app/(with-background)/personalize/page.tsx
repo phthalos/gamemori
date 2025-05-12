@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Slider } from "@/components/ui/slider";
 
 export default function Personalize() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,61 +67,48 @@ export default function Personalize() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    {
-                                        // 슬라이더
-                                        value.slider ? (
-                                            <>
-                                                {/* 슬라이더 값 표시 구현 필요 */}
-                                                <Label htmlFor={index.toString()}>2025년</Label>
-                                                {/* 슬라이더 핸들 2개 구현 필요 */}
-                                                <Slider className="mt-3" defaultValue={[value.slider.defaultvalue]} />
-                                            </>
-                                        ) : value.checkbox ? (
-                                            <ul className="flex flex-col gap-2">
-                                                {value.checkbox.map((item, checkboxindex) => (
-                                                    <div key={checkboxindex} className="flex items-center space-x-2">
-                                                        <Checkbox
-                                                            id={`checkbox${index}-${checkboxindex}`}
-                                                            checked={
-                                                                answers[value.key as keyof Answers]?.includes(
-                                                                    item.value
-                                                                ) || false
-                                                            }
-                                                            onCheckedChange={(checked) =>
-                                                                onCheckboxChange(
-                                                                    value.key as keyof Answers,
-                                                                    item.value,
-                                                                    Boolean(checked)
-                                                                )
-                                                            }
-                                                        />
-                                                        <Label htmlFor={`checkbox${index}-${checkboxindex}`}>
-                                                            {item.name}
-                                                        </Label>
-                                                    </div>
-                                                ))}
-                                            </ul>
-                                        ) : value.radio ? (
-                                            <RadioGroup
-                                                value={answers[value.key as keyof Answers]?.[0] || ""}
-                                                onValueChange={(val) => onRadioChange(value.key as keyof Answers, val)}
-                                            >
-                                                {value.radio.map((item, radioindex) => (
-                                                    <div key={radioindex} className="flex items-center space-x-2">
-                                                        <RadioGroupItem
-                                                            value={item.value}
-                                                            id={`radio${index}-${radioindex}`}
-                                                        />
-                                                        <Label htmlFor={`radio${index}-${radioindex}`}>
-                                                            {item.name}
-                                                        </Label>
-                                                    </div>
-                                                ))}
-                                            </RadioGroup>
-                                        ) : value.text ? (
-                                            <FormInput />
-                                        ) : null
-                                    }
+                                    {value.checkbox ? (
+                                        <ul className="flex flex-col gap-2">
+                                            {value.checkbox.map((item, checkboxindex) => (
+                                                <div key={checkboxindex} className="flex items-center space-x-2">
+                                                    <Checkbox
+                                                        id={`checkbox${index}-${checkboxindex}`}
+                                                        checked={
+                                                            answers[value.key as keyof Answers]?.includes(item.value) ||
+                                                            false
+                                                        }
+                                                        onCheckedChange={(checked) =>
+                                                            onCheckboxChange(
+                                                                value.key as keyof Answers,
+                                                                item.value,
+                                                                Boolean(checked)
+                                                            )
+                                                        }
+                                                    />
+                                                    <Label htmlFor={`checkbox${index}-${checkboxindex}`}>
+                                                        {item.name}
+                                                    </Label>
+                                                </div>
+                                            ))}
+                                        </ul>
+                                    ) : value.radio ? (
+                                        <RadioGroup
+                                            value={answers[value.key as keyof Answers]?.[0] || ""}
+                                            onValueChange={(val) => onRadioChange(value.key as keyof Answers, val)}
+                                        >
+                                            {value.radio.map((item, radioindex) => (
+                                                <div key={radioindex} className="flex items-center space-x-2">
+                                                    <RadioGroupItem
+                                                        value={item.value}
+                                                        id={`radio${index}-${radioindex}`}
+                                                    />
+                                                    <Label htmlFor={`radio${index}-${radioindex}`}>{item.name}</Label>
+                                                </div>
+                                            ))}
+                                        </RadioGroup>
+                                    ) : value.text ? (
+                                        <FormInput />
+                                    ) : null}
                                 </CardContent>
                             </Card>
                         </li>
