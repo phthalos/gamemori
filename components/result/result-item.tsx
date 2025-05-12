@@ -31,7 +31,9 @@ export default function ResultItem() {
         setTags(decodedTags);
 
         const params = new URLSearchParams();
-        params.set("key", "5982c1593bb64042b5f0e2921337b65f");
+
+        const apiKey = process.env.NEXT_PUBLIC_RAWG_API_KEY;
+        params.set("key", apiKey || "");
 
         const filters: Record<string, string[]> = {
             genres: decodedGenres,
