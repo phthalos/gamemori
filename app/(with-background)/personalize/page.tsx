@@ -10,41 +10,30 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
 
 export default function Personalize() {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        //유효성 검사 구현
+    };
+
     const [answers, setAnswers] = useState<Record<number, any>>({});
 
     const buildQuery = () => {
-        const queryObject: Record<string, string> = {};
+        const queryObject: Record<string, string> = {
+            ...(answers[0] && { genres: Array.isArray(answers[0]) ? answers[0].join(",") : answers[0] }),
+            ...(answers[1] && { stores: Array.isArray(answers[1]) ? answers[1].join(",") : answers[1] }),
+        };
 
-        if (answers[0]) {
-            queryObject.genres = Array.isArray(answers[0]) ? answers[0].join(",") : answers[0];
-        }
-
-        if (answers[1]) {
-            queryObject.stores = Array.isArray(answers[1]) ? answers[1].join(",") : answers[1];
-        }
-
-        const tagAnswers: string[] = [];
-        for (let i = 2; i <= 5; i++) {
-            if (answers[i]) {
-                if (Array.isArray(answers[i])) {
-                    tagAnswers.push(...answers[i]);
-                } else {
-                    tagAnswers.push(answers[i]);
-                }
-            }
-        }
+        const tagAnswers = [2, 3, 4, 5].flatMap((i) =>
+            Array.isArray(answers[i]) ? answers[i] : answers[i] ? [answers[i]] : []
+        );
         if (tagAnswers.length > 0) {
             queryObject.tags = tagAnswers.join(",");
         }
 
         return new URLSearchParams(queryObject).toString();
     };
-    const query = buildQuery();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        //유효성 검사 구현
-    };
+    const query = buildQuery();
 
     const onCheckboxChange = (questionIndex: number, value: string, checked: boolean) => {
         setAnswers((prev) => {

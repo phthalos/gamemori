@@ -10,12 +10,21 @@ export default function ResultItem() {
     const [stores, setStores] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
 
-    useEffect(() => {
-        const decodeAndSplit = (value: string | null): string[] => (value ? decodeURIComponent(value).split(",") : []);
+    const parseParams = (keys: string[]) => {
+        const result: Record<string, string[]> = {};
+        keys.forEach((key) => {
+            const value = searchParams.get(key);
+            result[key] = value ? decodeURIComponent(value).split(",") : [];
+        });
+        return result;
+    };
 
-        const decodedGenres = decodeAndSplit(searchParams.get("genres"));
-        const decodedStores = decodeAndSplit(searchParams.get("stores"));
-        const decodedTags = decodeAndSplit(searchParams.get("tags"));
+    useEffect(() => {
+        const {
+            genres: decodedGenres,
+            stores: decodedStores,
+            tags: decodedTags,
+        } = parseParams(["genres", "stores", "tags"]);
 
         setGenres(decodedGenres);
         setStores(decodedStores);
@@ -24,15 +33,17 @@ export default function ResultItem() {
         const params = new URLSearchParams();
         params.set("key", "5982c1593bb64042b5f0e2921337b65f");
 
-        if (decodedGenres.length > 0) {
-            params.set("genres", decodedGenres.join(","));
-        }
-        if (decodedStores.length > 0) {
-            params.set("stores", decodedStores.join(","));
-        }
-        if (decodedTags.length > 0) {
-            params.set("tags", decodedTags.join(","));
-        }
+        const filters: Record<string, string[]> = {
+            genres: decodedGenres,
+            stores: decodedStores,
+            tags: decodedTags,
+        };
+
+        Object.entries(filters).forEach(([key, value]) => {
+            if (value.length > 0) {
+                params.set(key, value.join(","));
+            }
+        });
 
         const apiUrl = `https://api.rawg.io/api/games?${params.toString()}`;
 
