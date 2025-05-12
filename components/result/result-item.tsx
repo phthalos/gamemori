@@ -2,6 +2,7 @@
 import { Badge } from "../ui/badge";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
 
 export default function ResultItem() {
     const searchParams = useSearchParams();
@@ -23,6 +24,32 @@ export default function ResultItem() {
         console.log("Genres:", decodedGenres);
         console.log("Platforms:", decodedPlatforms);
         console.log("Tags:", decodedTags);
+
+        const params = new URLSearchParams();
+        params.set("key", "5982c1593bb64042b5f0e2921337b65f");
+
+        if (decodedGenres.length > 0) {
+            params.set("genres", decodedGenres.join(","));
+        }
+        if (decodedPlatforms.length > 0) {
+            params.set("platforms", decodedPlatforms.join(","));
+        }
+        if (decodedTags.length > 0) {
+            params.set("tags", decodedTags.join(","));
+        }
+
+        const apiUrl = `https://api.rawg.io/api/games?${params.toString()}`;
+
+        axios
+            .get(apiUrl)
+            .then((response) => {
+                console.log(`요청주소: ${apiUrl}`);
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+                console.log("요청 실패");
+            });
     }, [searchParams]);
 
     return (
