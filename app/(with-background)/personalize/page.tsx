@@ -20,7 +20,7 @@ export default function Personalize() {
         }
 
         if (answers[1]) {
-            queryObject.store = Array.isArray(answers[1]) ? answers[1].join(",") : answers[1];
+            queryObject.stores = Array.isArray(answers[1]) ? answers[1].join(",") : answers[1];
         }
 
         const tagAnswers: string[] = [];

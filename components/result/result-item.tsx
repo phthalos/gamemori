@@ -7,18 +7,18 @@ import axios from "axios";
 export default function ResultItem() {
     const searchParams = useSearchParams();
     const [genres, setGenres] = useState<string[]>([]);
-    const [store, setStore] = useState<string[]>([]);
+    const [stores, setStores] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
 
     useEffect(() => {
         const decodeAndSplit = (value: string | null): string[] => (value ? decodeURIComponent(value).split(",") : []);
 
         const decodedGenres = decodeAndSplit(searchParams.get("genres"));
-        const decodedStore = decodeAndSplit(searchParams.get("store"));
+        const decodedStores = decodeAndSplit(searchParams.get("stores"));
         const decodedTags = decodeAndSplit(searchParams.get("tags"));
 
         setGenres(decodedGenres);
-        setStore(decodedStore);
+        setStores(decodedStores);
         setTags(decodedTags);
 
         const params = new URLSearchParams();
@@ -27,8 +27,8 @@ export default function ResultItem() {
         if (decodedGenres.length > 0) {
             params.set("genres", decodedGenres.join(","));
         }
-        if (decodedStore.length > 0) {
-            params.set("store", decodedStore.join(","));
+        if (decodedStores.length > 0) {
+            params.set("stores", decodedStores.join(","));
         }
         if (decodedTags.length > 0) {
             params.set("tags", decodedTags.join(","));
