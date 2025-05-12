@@ -1,7 +1,30 @@
 "use client";
 import { Badge } from "../ui/badge";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ResultItem() {
+    const searchParams = useSearchParams();
+    const [genres, setGenres] = useState<string[]>([]);
+    const [platforms, setPlatforms] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>([]);
+
+    useEffect(() => {
+        const decodeAndSplit = (value: string | null): string[] => (value ? decodeURIComponent(value).split(",") : []);
+
+        const decodedGenres = decodeAndSplit(searchParams.get("genres"));
+        const decodedPlatforms = decodeAndSplit(searchParams.get("platforms"));
+        const decodedTags = decodeAndSplit(searchParams.get("tags"));
+
+        setGenres(decodedGenres);
+        setPlatforms(decodedPlatforms);
+        setTags(decodedTags);
+
+        console.log("Genres:", decodedGenres);
+        console.log("Platforms:", decodedPlatforms);
+        console.log("Tags:", decodedTags);
+    }, [searchParams]);
+
     return (
         <div className="w-full flex gap-5">
             {/* 썸네일 */}
