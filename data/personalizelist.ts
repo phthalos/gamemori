@@ -33,6 +33,21 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
+        question: "어떤 게임 플랫폼을 자주 이용하시나요?",
+        checkbox: [
+            { name: "Steam", value: "steam" },
+            { name: "Epic Games", value: "epic-games" },
+            { name: "EA App", value: "ea-app" },
+            { name: "GOG", value: "gog" },
+            { name: "Xbox Store", value: "xbox-store" },
+            { name: "PlayStation Store", value: "playstation-store" },
+            { name: "Nintendo eShop", value: "nintendo" },
+            { name: "itch.io", value: "itch" },
+            { name: "Google Play", value: "google-play" },
+            { name: "App Store", value: "apple-appstore" },
+        ],
+    },
+    {
         question: "좋아하는 그래픽 스타일은 무엇인가요?",
         checkbox: [
             { name: "픽셀 아트", value: "pixel-art" },
@@ -52,30 +67,6 @@ const personalizelist: PersonalizeListType[] = [
             { name: "네온", value: "neon" },
             { name: "흑백", value: "black-and-white" },
             { name: "수채화", value: "watercolor" },
-        ],
-    },
-    {
-        question: "어떤 게임 플랫폼을 자주 이용하시나요?",
-        checkbox: [
-            { name: "Steam", value: "steam" },
-            { name: "Epic Games", value: "epic-games" },
-            { name: "EA App", value: "ea-app" },
-            { name: "GOG", value: "gog" },
-            { name: "Xbox Store", value: "xbox-store" },
-            { name: "PlayStation Store", value: "playstation-store" },
-            { name: "Nintendo eShop", value: "nintendo" },
-            { name: "itch.io", value: "itch" },
-            { name: "Google Play", value: "google-play" },
-            { name: "App Store", value: "apple-appstore" },
-        ],
-    },
-    {
-        question: "선호하는 게임 플레이 시간은 언제인가요?",
-        radio: [
-            { name: "10시간 이하 (짧고 간단한 게임)", value: "short" },
-            { name: "10~30시간", value: "medium" },
-            { name: "30시간 이상 (장기 몰입형 게임)", value: "long" },
-            { name: "상관없음", value: "any" },
         ],
     },
     {

@@ -12,11 +12,38 @@ import { Slider } from "@/components/ui/slider";
 export default function Personalize() {
     const [answers, setAnswers] = useState<Record<number, any>>({});
 
+    const buildQuery = () => {
+        const queryObject: Record<string, string> = {};
+
+        if (answers[0]) {
+            queryObject.genres = Array.isArray(answers[0]) ? answers[0].join(",") : answers[0];
+        }
+
+        if (answers[1]) {
+            queryObject.platforms = Array.isArray(answers[1]) ? answers[1].join(",") : answers[1];
+        }
+
+        const tagAnswers: string[] = [];
+        for (let i = 2; i <= 5; i++) {
+            if (answers[i]) {
+                if (Array.isArray(answers[i])) {
+                    tagAnswers.push(...answers[i]);
+                } else {
+                    tagAnswers.push(answers[i]);
+                }
+            }
+        }
+        if (tagAnswers.length > 0) {
+            queryObject.tags = tagAnswers.join(",");
+        }
+
+        return new URLSearchParams(queryObject).toString();
+    };
+    const query = buildQuery();
+
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // 유효성 검사 구현
-        console.log("사용자 응답:", answers);
-        localStorage.setItem("answer", JSON.stringify(answers));
+        //유효성 검사 구현
     };
 
     const onCheckboxChange = (questionIndex: number, value: string, checked: boolean) => {
@@ -102,7 +129,7 @@ export default function Personalize() {
                         </li>
                     ))}
                 </ul>
-                <Button href="/result" type="submit" className="float-right">
+                <Button href={`/result?${query}`} type="submit" className="float-right">
                     결과 보기
                 </Button>
             </form>

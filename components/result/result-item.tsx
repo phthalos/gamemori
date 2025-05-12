@@ -1,15 +1,7 @@
 "use client";
 import { Badge } from "../ui/badge";
-import React, { useEffect, useState } from "react";
 
 export default function ResultItem() {
-    const [answers, setAnswers] = useState<Record<number, any>>({});
-
-    useEffect(() => {
-        const data = localStorage.getItem("answers");
-        console.log(data);
-    }, []);
-
     return (
         <div className="w-full flex gap-5">
             {/* 썸네일 */}
