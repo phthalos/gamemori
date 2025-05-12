@@ -1,5 +1,6 @@
 type PersonalizeListType = {
     question: string;
+    key?: string;
     slider?: {
         defaultvalue: number;
         max: number;
@@ -12,6 +13,7 @@ type PersonalizeListType = {
 const personalizelist: PersonalizeListType[] = [
     {
         question: "어떤 장르의 게임을 좋아하시나요?",
+        key: "genres",
         checkbox: [
             { name: "액션", value: "action" },
             { name: "인디", value: "indie" },
@@ -34,6 +36,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "어떤 게임 플랫폼을 자주 이용하시나요?",
+        key: "stores",
         checkbox: [
             { name: "Steam", value: "1" },
             { name: "PlayStation Store", value: "3" },
@@ -49,6 +52,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "좋아하는 그래픽 스타일은 무엇인가요?",
+        key: "tags",
         checkbox: [
             { name: "픽셀 아트", value: "pixel-art" },
             { name: "2D", value: "2d" },
@@ -71,6 +75,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "누구와 함께 게임을 하시나요?",
+        key: "tags",
         checkbox: [
             { name: "혼자 플레이", value: "singleplayer" },
             { name: "친구들과 온라인 멀티", value: "multiplayer-friends" },
@@ -80,6 +85,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "게임에서 가장 중요하게 생각하는 요소는 무엇인가요?",
+        key: "tags",
         checkbox: [
             { name: "스토리", value: "story" },
             { name: "그래픽", value: "graphics" },
@@ -91,6 +97,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "무료 게임을 선호하시나요?",
+        key: "tags",
         radio: [
             { name: "네, 무료 게임만 하고 싶어요", value: "free" },
             { name: "아니요, 유료 게임도 괜찮아요", value: "paid" },

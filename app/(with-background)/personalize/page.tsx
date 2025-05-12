@@ -15,42 +15,44 @@ export default function Personalize() {
         //유효성 검사 구현
     };
 
-    const [answers, setAnswers] = useState<Record<number, any>>({});
+    type Answers = {
+        genres: string[];
+        stores: string[];
+        tags: string[];
+    };
+
+    const [answers, setAnswers] = useState<Answers>({
+        genres: [],
+        stores: [],
+        tags: [],
+    });
 
     const buildQuery = () => {
-        const queryObject: Record<string, string> = {
-            ...(answers[0] && { genres: Array.isArray(answers[0]) ? answers[0].join(",") : answers[0] }),
-            ...(answers[1] && { stores: Array.isArray(answers[1]) ? answers[1].join(",") : answers[1] }),
-        };
+        const queryObject: Record<string, string> = {};
 
-        const tagAnswers = [2, 3, 4, 5].flatMap((i) =>
-            Array.isArray(answers[i]) ? answers[i] : answers[i] ? [answers[i]] : []
-        );
-        if (tagAnswers.length > 0) {
-            queryObject.tags = tagAnswers.join(",");
-        }
+        (["genres", "stores", "tags"] as (keyof Answers)[]).forEach((key) => {
+            if (answers[key] && answers[key].length > 0) {
+                queryObject[key] = answers[key].join(",");
+            }
+        });
 
         return new URLSearchParams(queryObject).toString();
     };
 
     const query = buildQuery();
 
-    const onCheckboxChange = (questionIndex: number, value: string, checked: boolean) => {
+    const onCheckboxChange = (key: keyof Answers, value: string, checked: boolean) => {
         setAnswers((prev) => {
-            const prevList = prev[questionIndex] ?? [];
-            if (checked) {
-                return { ...prev, [questionIndex]: [...prevList, value] };
-            } else {
-                return {
-                    ...prev,
-                    [questionIndex]: prevList.filter((v: string) => v !== value),
-                };
-            }
+            const prevList = prev[key] ?? [];
+            return {
+                ...prev,
+                [key]: checked ? [...prevList, value] : prevList.filter((v: string) => v !== value),
+            };
         });
     };
 
-    const onRadioChange = (questionIndex: number, value: string) => {
-        setAnswers((prev) => ({ ...prev, [questionIndex]: value }));
+    const onRadioChange = (key: keyof Answers, value: string) => {
+        setAnswers((prev) => ({ ...prev, [key]: [value] }));
     };
 
     return (
@@ -81,9 +83,17 @@ export default function Personalize() {
                                                     <div key={checkboxindex} className="flex items-center space-x-2">
                                                         <Checkbox
                                                             id={`checkbox${index}-${checkboxindex}`}
-                                                            checked={answers[index]?.includes(item.value) || false}
+                                                            checked={
+                                                                answers[value.key as keyof Answers]?.includes(
+                                                                    item.value
+                                                                ) || false
+                                                            }
                                                             onCheckedChange={(checked) =>
-                                                                onCheckboxChange(index, item.value, Boolean(checked))
+                                                                onCheckboxChange(
+                                                                    value.key as keyof Answers,
+                                                                    item.value,
+                                                                    Boolean(checked)
+                                                                )
                                                             }
                                                         />
                                                         <Label htmlFor={`checkbox${index}-${checkboxindex}`}>
@@ -94,8 +104,8 @@ export default function Personalize() {
                                             </ul>
                                         ) : value.radio ? (
                                             <RadioGroup
-                                                value={answers[index] || ""}
-                                                onValueChange={(val) => onRadioChange(index, val)}
+                                                value={answers[value.key as keyof Answers]?.[0] || ""}
+                                                onValueChange={(val) => onRadioChange(value.key as keyof Answers, val)}
                                             >
                                                 {value.radio.map((item, radioindex) => (
                                                     <div key={radioindex} className="flex items-center space-x-2">
