@@ -17,6 +17,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "SokchoBadaBatang";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaBatang.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
 h1,
 h2,
 h3,
@@ -64,6 +71,31 @@ button:hover {
     }
     100% {
         transform: translateX(0%);
+    }
+}
+
+@keyframes pop {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.97);
+    }
+    70% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
     }
 }
 
