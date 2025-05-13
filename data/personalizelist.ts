@@ -1,10 +1,6 @@
 type PersonalizeListType = {
     question: string;
-    slider?: {
-        defaultvalue: number;
-        max: number;
-        step: number;
-    };
+    key?: string;
     checkbox?: { name: string; value: string }[];
     radio?: { name: string; value: string }[];
     text?: boolean;
@@ -12,6 +8,7 @@ type PersonalizeListType = {
 const personalizelist: PersonalizeListType[] = [
     {
         question: "어떤 장르의 게임을 좋아하시나요?",
+        key: "genres",
         checkbox: [
             { name: "액션", value: "action" },
             { name: "인디", value: "indie" },
@@ -33,7 +30,24 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
+        question: "어떤 게임 플랫폼을 자주 이용하시나요?",
+        key: "stores",
+        checkbox: [
+            { name: "Steam", value: "1" },
+            { name: "PlayStation Store", value: "3" },
+            { name: "Xbox Store", value: "2" },
+            { name: "App Store", value: "4" },
+            { name: "GOG", value: "5" },
+            { name: "Nintendo Store", value: "6" },
+            { name: "Xbox 360 Store", value: "7" },
+            { name: "Google Play", value: "8" },
+            { name: "itch.io", value: "9" },
+            { name: "Epic Games", value: "11" },
+        ],
+    },
+    {
         question: "좋아하는 그래픽 스타일은 무엇인가요?",
+        key: "tags",
         checkbox: [
             { name: "픽셀 아트", value: "pixel-art" },
             { name: "2D", value: "2d" },
@@ -55,31 +69,8 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
-        question: "어떤 게임 플랫폼을 자주 이용하시나요?",
-        checkbox: [
-            { name: "Steam", value: "steam" },
-            { name: "Epic Games", value: "epic-games" },
-            { name: "EA App", value: "ea-app" },
-            { name: "GOG", value: "gog" },
-            { name: "Xbox Store", value: "xbox-store" },
-            { name: "PlayStation Store", value: "playstation-store" },
-            { name: "Nintendo eShop", value: "nintendo" },
-            { name: "itch.io", value: "itch" },
-            { name: "Google Play", value: "google-play" },
-            { name: "App Store", value: "apple-appstore" },
-        ],
-    },
-    {
-        question: "선호하는 게임 플레이 시간은 언제인가요?",
-        radio: [
-            { name: "10시간 이하 (짧고 간단한 게임)", value: "short" },
-            { name: "10~30시간", value: "medium" },
-            { name: "30시간 이상 (장기 몰입형 게임)", value: "long" },
-            { name: "상관없음", value: "any" },
-        ],
-    },
-    {
         question: "누구와 함께 게임을 하시나요?",
+        key: "tags",
         checkbox: [
             { name: "혼자 플레이", value: "singleplayer" },
             { name: "친구들과 온라인 멀티", value: "multiplayer-friends" },
@@ -89,6 +80,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "게임에서 가장 중요하게 생각하는 요소는 무엇인가요?",
+        key: "tags",
         checkbox: [
             { name: "스토리", value: "story" },
             { name: "그래픽", value: "graphics" },
@@ -100,6 +92,7 @@ const personalizelist: PersonalizeListType[] = [
     },
     {
         question: "무료 게임을 선호하시나요?",
+        key: "tags",
         radio: [
             { name: "네, 무료 게임만 하고 싶어요", value: "free" },
             { name: "아니요, 유료 게임도 괜찮아요", value: "paid" },
