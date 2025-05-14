@@ -54,7 +54,6 @@ export default function Personalize() {
         setAnswers((prev) => {
             const current = prev[key] || [];
 
-            // 라디오 옵션 목록에서 기존 항목 제거
             const radioOptions =
                 personalizelist.find((item) => item.key === key && item.radio)?.radio?.map((r) => r.value) || [];
 
