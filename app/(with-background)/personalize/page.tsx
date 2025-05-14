@@ -42,7 +42,7 @@ export default function Personalize() {
 
     const onCheckboxChange = (key: keyof Answers, value: string, checked: boolean) => {
         setAnswers((prev) => {
-            const prevList = prev[key] ?? [];
+            const prevList = prev[key];
             return {
                 ...prev,
                 [key]: checked ? [...prevList, value] : prevList.filter((v: string) => v !== value),
@@ -51,7 +51,20 @@ export default function Personalize() {
     };
 
     const onRadioChange = (key: keyof Answers, value: string) => {
-        setAnswers((prev) => ({ ...prev, [key]: [value] }));
+        setAnswers((prev) => {
+            const current = prev[key] || [];
+
+            // 라디오 옵션 목록에서 기존 항목 제거
+            const radioOptions =
+                personalizelist.find((item) => item.key === key && item.radio)?.radio?.map((r) => r.value) || [];
+
+            const filtered = current.filter((v) => !radioOptions.includes(v));
+
+            return {
+                ...prev,
+                [key]: [...filtered, value],
+            };
+        });
     };
 
     return (
@@ -93,7 +106,11 @@ export default function Personalize() {
                                         </ul>
                                     ) : value.radio ? (
                                         <RadioGroup
-                                            value={answers[value.key as keyof Answers]?.[0] || ""}
+                                            value={
+                                                answers[value.key as keyof Answers]?.find((v) =>
+                                                    value.radio?.some((r) => r.value === v)
+                                                ) || ""
+                                            }
                                             onValueChange={(val) => onRadioChange(value.key as keyof Answers, val)}
                                         >
                                             {value.radio.map((item, radioindex) => (
