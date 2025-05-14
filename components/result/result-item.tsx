@@ -69,10 +69,10 @@ export default function ResultItem() {
     }, [searchParams]);
 
     return (
-        <>
-            <div className="bg-violet-200/20 rounded-lg overflow-hidden pb-2 hover:scale-105 transition-all duration-300 text-left">
+        <div className="bg-gradient-to-bl p-px from-purple-500 to-40% to-neutral-800 rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 text-left">
+            <div className="bg-gradient-to-bl from-violet-950 to-60% to-neutral-900 rounded-lg overflow-hidden pb-2 hover:scale-105 transition-all duration-300 text-left">
+                <div className="min-w-3xs min-h-44 bg-gray-700" />
                 {/* 썸네일 이미지 (img 태그로 변경 필요) */}
-                <div className="min-w-3xs min-h-44 bg-gray-400" />
                 <ul className="flex justify-between m-4">
                     {/* 게임제목 */}
                     <li>
@@ -88,8 +88,8 @@ export default function ResultItem() {
                     </li>
                 </ul>
                 {/* 게임회사명 */}
-                <p className="m-4 text-sm">게임회사명</p>
+                <p className="m-4 text-sm text-gray-300">게임회사명</p>
             </div>
-        </>
+        </div>
     );
 }

@@ -21,7 +21,10 @@ import {
 export default function Result() {
     return (
         <>
-            <h2 className="-mt-10 mb-8">테스트 결과</h2>
+            <div className="mb-10 w-full flex flex-col px-[10%]">
+                <h1>무슨 스토어 게임</h1>
+                <span className="text-gray-300">무슨무슨 스토어의 게임 목록에 대한 한줄설명을 입력합니다</span>
+            </div>
             <div className="w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-[10%] mb-24">
                 {/* 게임 목록 1개 */}
                 <Dialog>
