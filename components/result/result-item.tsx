@@ -1,8 +1,8 @@
 "use client";
-import { Badge } from "../ui/badge";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
+import { ScoreBadge } from "./score-badge";
 
 export default function ResultItem() {
     // URL 쿼리 파라미터를 읽기 위한 훅
@@ -10,6 +10,7 @@ export default function ResultItem() {
     const [genres, setGenres] = useState<string[]>([]);
     const [stores, setStores] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
+    const [score, setScore] = useState<number>(-1); // 메타크리틱 점수
 
     // 쿼리 문자열에서 주어진 키들의 값을 추출하고, ','로 나눠 배열로 반환
     const parseParams = (keys: string[]) => {
@@ -68,26 +69,27 @@ export default function ResultItem() {
     }, [searchParams]);
 
     return (
-        <div className="w-full flex gap-5">
-            {/* 썸네일 */}
-            <div className="w-16 h-12 bg-gray-400" />
-            <ul>
-                <li>
-                    <h4>게임제목</h4>
-                </li>
-                <li>
-                    <span>게임회사명</span>
-                </li>
-            </ul>
-            <ul className="flex">
-                <Badge variant="secondary" className="mr-1">
-                    레이싱
-                </Badge>
-                <Badge variant="secondary" className="mr-1">
-                    RPG
-                </Badge>
-            </ul>
-            <span className="float-right ml-auto">⭐️⭐️⭐️⭐️⭐️</span>
-        </div>
+        <>
+            <div className="bg-violet-200/20 rounded-lg overflow-hidden pb-2 hover:scale-105 transition-all duration-300 text-left">
+                {/* 썸네일 이미지 (img 태그로 변경 필요) */}
+                <div className="min-w-3xs min-h-44 bg-gray-400" />
+                <ul className="flex justify-between m-4">
+                    {/* 게임제목 */}
+                    <li>
+                        <h4 className="break-keep leading-6">아주아주 매우 기다랗고 기다란 게임 이름</h4>
+                    </li>
+                    {/* 메타크리틱 점수 배지 */}
+                    <li className="ml-12">
+                        <ScoreBadge
+                            variant={score >= 75 ? "green" : score >= 50 ? "yellow" : score >= 0 ? "red" : "gray"}
+                        >
+                            {score}
+                        </ScoreBadge>
+                    </li>
+                </ul>
+                {/* 게임회사명 */}
+                <p className="m-4 text-sm">게임회사명</p>
+            </div>
+        </>
     );
 }
