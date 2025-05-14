@@ -94,8 +94,7 @@ const personalizelist: PersonalizeListType[] = [
         question: "무료 게임을 선호하시나요?",
         key: "tags",
         radio: [
-            { name: "네, 무료 게임만 하고 싶어요", value: "free" },
-            { name: "아니요, 유료 게임도 괜찮아요", value: "paid" },
+            { name: "네, 무료 게임만 하고 싶어요", value: "free-to-play" },
             { name: "상관없어요", value: "any" },
         ],
     },

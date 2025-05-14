@@ -29,11 +29,18 @@ export default function Personalize() {
     const buildQuery = () => {
         const queryObject: Record<string, string> = {};
 
-        (["genres", "stores", "tags"] as (keyof Answers)[]).forEach((key) => {
-            if (answers[key] && answers[key].length > 0) {
+        //genres, stores 처리
+        (["genres", "stores"] as (keyof Answers)[]).forEach((key) => {
+            if (answers[key].length > 0) {
                 queryObject[key] = answers[key].join(",");
             }
         });
+
+        // tags 처리
+        const tags = answers.tags.filter((tag) => tag !== "any");
+        if (tags.length > 0) {
+            queryObject["tags"] = tags.join(",");
+        }
 
         return new URLSearchParams(queryObject).toString();
     };
