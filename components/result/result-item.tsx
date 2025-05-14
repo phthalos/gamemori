@@ -54,17 +54,31 @@ export default function ResultItem() {
             }
         });
 
-        // 최종 API 요청 URL 생성
-        const apiUrl = `https://api.rawg.io/api/games?${params.toString()}`;
+        const apiUrl = `https://api.rawg.io/api/games?ordering=-rating&${params.toString()}`;
 
-        // API 호출 및 결과 출력
         axios
             .get(apiUrl)
             .then((response) => {
-                console.log(response.data);
+                console.log("받아온 데이터:", response.data);
+
+                const sorted = response.data.results
+                    .sort((a: any, b: any) => {
+                        // 1차 정렬: rating 높은 순
+                        if (b.rating !== a.rating) {
+                            return b.rating - a.rating;
+                        }
+
+                        // 2차 정렬: released 최신순
+                        const dateA = new Date(a.released || "1900-01-01").getTime();
+                        const dateB = new Date(b.released || "1900-01-01").getTime();
+                        return dateB - dateA;
+                    })
+                    .slice(0, 16); // 최종 16개만 추출
+
+                console.log("최종 결과 (평점 우선, 출시일 보조):", sorted);
             })
             .catch((error) => {
-                console.error(error);
+                console.error("API 요청 실패:", error);
             });
     }, [searchParams]);
 
