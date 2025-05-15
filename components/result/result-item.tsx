@@ -54,7 +54,7 @@ export default function ResultItem() {
             }
         });
 
-        const apiUrl = `https://api.rawg.io/api/games?ordering=-rating&${params.toString()}`;
+        const apiUrl = `https://api.rawg.io/api/games?${params.toString()}`;
 
         axios
             .get(apiUrl)
