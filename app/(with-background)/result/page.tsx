@@ -88,8 +88,9 @@ export default function Result() {
                 // console.log("필터링 된 최종 결과:", sorted);
                 if (sorted) {
                     const games = sorted.map((data: GameTypes) => {
-                        const { name, metacritic, background_image, platforms } = data;
+                        const { id, name, metacritic, background_image, platforms } = data;
                         return {
+                            id,
                             name,
                             metacritic,
                             background_image,
