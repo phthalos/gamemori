@@ -1,4 +1,5 @@
 type GameTypes = {
+    id: number;
     name: string;
     metacritic: number;
     background_image: string;

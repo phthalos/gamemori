@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { GameTypes } from "@/types/types";
 import { Badge } from "../ui/badge";
-
+import { PlatformIconList } from "../ui/platform-icon";
+import GameDescription from "../ui/GameDescription";
 
 
 interface Props {
@@ -19,37 +20,6 @@ interface Props {
 }
 
 
-
-
-function PlatformIcon({ name }: { name: string }) {
-    const slug = name.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
-  
-    const knownIcons = [
-      "android", "appleii", "atari2600", "atari5200", "atari7800", "atariflashback",
-      "atarilynx", "atarist", "atarixegs", "commodoreamiga",
-      "gameboy", "gameboyadvance", "gameboycolor", "gamecube", "gamegear", "genesis",
-      "ios", "linux", "macos", "neogeo", "nes", "nintendo3ds", "nintendo64",
-      "nintendods", "nintendodsi", "nintendoswitch", "playstation", "playstation2",
-      "playstation3", "playstation4", "playstation5", "psp", "psvita", "sega32x",
-      "segacd", "segamastersystem", "segasaturn", "snes", "wii", "wiiu", "xbox",
-      "xbox360", "xboxone", "xboxseriessx"
-    ];
-  
-    const hasIcon = knownIcons.includes(slug);
-  
-    if (!hasIcon) {
-      return <span className="text-xs text-gray-300">{name}</span>;
-    }
-  
-    return (
-      <img
-        src={`/icons/${slug}.svg`}
-        alt={name}
-        className="h-4 object-contain"
-      />
-    );
-  }
-  
 
 
 export default function ResultItem({ games, index }: Props) {
@@ -94,16 +64,11 @@ export default function ResultItem({ games, index }: Props) {
                                     </ul>
                                     {/* 플랫폼 목록 */}
                                     {/* 현재는 이름으로 표시되지만, 곧 아이콘으로 변경될 예정입니다. */}
-                                    <ul className="flex flex-wrap gap-1 mt-10 leading-2.5 text-sm text-gray-300">
-                                        {game.platforms.map((platformObj, index) => (
-                                            <li key={index}>
-                                                <Badge variant="outline" className="p-1 bg-white/5 flex items-center gap-1">
-                                                    <PlatformIcon name={platformObj.platform.name} />
-                                                </Badge>
+                                    <div className="flex flex-wrap gap-1 mt-0 leading-2.5 text-sm text-gray-300">
+                                        <PlatformIconList list={game.platforms} />
+                                    </div>
 
-                                            </li>
-                                        ))}
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -112,7 +77,7 @@ export default function ResultItem({ games, index }: Props) {
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>{game.name}</DialogTitle>
-                            <DialogDescription>게임 한줄설명</DialogDescription>
+                            <div className="text-muted-foreground text-sm mt-2"><GameDescription id={game.id} /></div>
                         </DialogHeader>
                         (게임 상세정보 영역)
                         <DialogFooter>(팝업 footer 영역)</DialogFooter>
