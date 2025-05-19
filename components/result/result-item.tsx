@@ -11,6 +11,8 @@ import {
 import { GameTypes } from "@/types/types";
 import { PlatformIconList } from "../ui/platform-icon";
 import GameDescription from "../ui/GameDescription";
+import GameInfo from "../ui/gameinfo";
+import StoreList from "../ui/storelist";
 
 interface Props {
     games: GameTypes[];
@@ -78,8 +80,11 @@ export default function ResultItem({ games, index }: Props) {
 
                         {/* 게임 설명 */}
                         <DialogDescription>
-                            <GameDescription id={game.id} />
+                            
                         </DialogDescription>
+                        <GameInfo id={game.id} />
+                        <GameDescription id={game.id} />
+                        <StoreList id={game.id} />
                         <DialogFooter>(팝업 footer 영역)</DialogFooter>
                     </DialogContent>
                 </Dialog>
