@@ -9,18 +9,13 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { GameTypes } from "@/types/types";
-import { Badge } from "../ui/badge";
 import { PlatformIconList } from "../ui/platform-icon";
 import GameDescription from "../ui/GameDescription";
-
 
 interface Props {
     games: GameTypes[];
     index: number;
 }
-
-
-
 
 export default function ResultItem({ games, index }: Props) {
     return (
@@ -62,24 +57,29 @@ export default function ResultItem({ games, index }: Props) {
                                             </ScoreBadge>
                                         </li>
                                     </ul>
-                                    {/* 플랫폼 목록 */}
-                                    {/* 현재는 이름으로 표시되지만, 곧 아이콘으로 변경될 예정입니다. */}
-                                    <div className="flex flex-wrap gap-1 mt-0 leading-2.5 text-sm text-gray-300">
-                                        <PlatformIconList list={game.platforms} />
-                                    </div>
-
-
+                                    {/* 플랫폼 목록 아이콘들 */}
+                                    <PlatformIconList list={game.platforms} />
                                 </div>
                             </div>
                         </div>
                     </DialogTrigger>
                     {/* 게임 상세정보 팝업 */}
-                    <DialogContent>
+                    <DialogContent className="max-h-[90vh] overflow-y-scroll">
                         <DialogHeader>
                             <DialogTitle>{game.name}</DialogTitle>
-                            <div className="text-muted-foreground text-sm mt-2"><GameDescription id={game.id} /></div>
                         </DialogHeader>
-                        (게임 상세정보 영역)
+                        {/* 썸네일 이미지 */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src={game.background_image}
+                            alt="썸네일 이미지"
+                            className="bg-gray-400 object-cover my-8"
+                        />
+
+                        {/* 게임 설명 */}
+                        <DialogDescription>
+                            <GameDescription id={game.id} />
+                        </DialogDescription>
                         <DialogFooter>(팝업 footer 영역)</DialogFooter>
                     </DialogContent>
                 </Dialog>
