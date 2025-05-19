@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Badge } from "@/components/ui/badge";
 
 export default function Personalize() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -87,7 +88,7 @@ export default function Personalize() {
                                 </CardHeader>
                                 <CardContent>
                                     {value.checkbox ? (
-                                        <ul className="flex flex-col gap-2">
+                                        <ul className="flex flex-wrap gap-1.5">
                                             {value.checkbox.map((item, checkboxindex) => (
                                                 <div key={checkboxindex} className="flex items-center space-x-2">
                                                     <Checkbox
@@ -103,9 +104,21 @@ export default function Personalize() {
                                                                 Boolean(checked)
                                                             )
                                                         }
+                                                        className="hidden"
                                                     />
                                                     <Label htmlFor={`checkbox${index}-${checkboxindex}`}>
-                                                        {item.name}
+                                                        <Badge
+                                                            variant={
+                                                                answers[value.key as keyof Answers]?.includes(
+                                                                    item.value
+                                                                )
+                                                                    ? "default"
+                                                                    : "outline"
+                                                            }
+                                                            className="text-xs px-3 py-1.5 rounded-full"
+                                                        >
+                                                            {item.name}
+                                                        </Badge>
                                                     </Label>
                                                 </div>
                                             ))}
