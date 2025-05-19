@@ -9,21 +9,20 @@ interface Props {
 }
 
 export default function GameDescription({ id }: Props) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [translated, setTranslated] = useState<string | null>(null);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         if (!id) return;
         setIsLoading(true);
 
-        // 1단계: 영어 설명 불러오기
         axios
             .get(`https://api.rawg.io/api/games/${id}?key=${process.env.NEXT_PUBLIC_RAWG_API_KEY}`)
             .then((res) => {
                 const desc = res.data.description_raw;
                 if (!desc) return;
 
-                // 2단계: DeepL API에 번역 요청 보내기
                 return fetch("/api/translate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -44,6 +43,8 @@ export default function GameDescription({ id }: Props) {
             });
     }, [id]);
 
+    const short = translated ? translated.slice(0, 100) + "..." : "";
+
     return (
         <div className="leading-6">
             {isLoading ? (
@@ -55,7 +56,19 @@ export default function GameDescription({ id }: Props) {
                     <Skeleton className="h-4 w-5/6" />
                 </div>
             ) : (
-                translated
+                <>
+                    <p className="text-sm text-gray-300 whitespace-pre-line">
+                        {expanded ? translated : short}
+                    </p>
+                    {translated && translated.length > 100 && (
+                        <button
+                            onClick={() => setExpanded((prev) => !prev)}
+                            className="text-xs text-blue-400 underline mt-1"
+                        >
+                            {expanded ? "간략히 보기" : "더보기"}
+                        </button>
+                    )}
+                </>
             )}
         </div>
     );
