@@ -24,7 +24,9 @@ export default function GameInfo({ id, className }: Props) {
         setDevelopers(data.developers?.map((d: any) => d.name) ?? []);
         setPublishers(data.publishers?.map((p: any) => p.name) ?? []);
       })
-      .catch((err) => console.error("게임 정보 불러오기 실패:", err));
+      .catch((err) => {
+        // console.error("게임 정보 불러오기 실패:", err);
+        });
   }, [id]);
 
   return (

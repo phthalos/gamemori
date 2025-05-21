@@ -13,6 +13,7 @@ import { PlatformIconList } from "../ui/platform-icon";
 import GameDescription from "../ui/GameDescription";
 import GameInfo from "../ui/gameinfo";
 import StoreList from "../ui/storelist";
+import ScreenshotCarousel from "../ui/screenshot";
 
 interface Props {
     games: GameTypes[];
@@ -72,19 +73,20 @@ export default function ResultItem({ games, index }: Props) {
                         </DialogHeader>
                         {/* 썸네일 이미지 */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={game.background_image}
-                            alt="썸네일 이미지"
-                            className="bg-gray-400 object-cover my-8"
-                        />
+
+                        <ScreenshotCarousel id={game.id} thumbnail={game.background_image} />
+
 
                         {/* 게임 설명 */}
                         <DialogDescription>
                             
                         </DialogDescription>
+                        
                         <GameInfo id={game.id} />
-                        <GameDescription id={game.id} />
                         <StoreList id={game.id} />
+                        <GameDescription id={game.id} />
+                        
+                        
                         <DialogFooter>(팝업 footer 영역)</DialogFooter>
                     </DialogContent>
                 </Dialog>
