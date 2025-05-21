@@ -2,13 +2,8 @@ import ThumbnailMarquee from "./thumbnail-marquee";
 
 export default function ThumbnailMarqueeList() {
     return (
-        <div
-            style={{
-                WebkitMaskImage: "linear-gradient(to right, transparent 4%, black 30%, black 70%, transparent 96%)",
-                maskImage: "linear-gradient(to right, transparent 4%, black 30%, black 70%, transparent 96%)",
-                transform: "perspective(400px) rotateX(30deg)",
-            }}
-        >
+        <div className="absolute left-0 bottom-32">
+            <div className="z-2 absolute w-screen h-8 bg-linear-[90deg,#0a0a0a_4%,transparent_30%,transparent_70%,#0a0a0a_96%] bg-transparent" />
             <ThumbnailMarquee className="animate-[scroll-left_30s_linear_infinite]" />
         </div>
     );

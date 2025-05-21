@@ -1,5 +1,4 @@
 import { gamelist } from "@/data/gamelist";
-import Image from "next/image";
 
 type Params = {
     className?: string;
@@ -7,14 +6,13 @@ type Params = {
 
 export default function ThumbnailMarquee({ className }: Params) {
     return (
-        <div className="overflow-hidden w-full mb-5">
-            <ul className={`${className} flex gap-2 relative h-fit`}>
-                {gamelist.concat(gamelist).map((game, index) => (
-                    <li key={index} className="flex-shrink-0">
-                        <Image src={`/images/thumbs/${game}`} alt="thumbs" width={180} height={70} />
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <ul className={`${className} w-full flex gap-24`}>
+            {gamelist.concat(...Array(3).fill(gamelist)).map((game, index) => (
+                <li key={index} className="flex-shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/logos/${game}`} alt="thumbs" className="h-6 grayscale opacity-55" />
+                </li>
+            ))}
+        </ul>
     );
 }

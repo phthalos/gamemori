@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="kr" className={`${pretendard.variable} dark`}>
-            <body className={`${pretendard.className} antialiased`}>
+            <body className={`${pretendard.className} antialiased overflow-x-hidden`}>
                 <Header />
                 <div className="flex justify-center items-center">{children}</div>
                 <Footer />
