@@ -1,10 +1,6 @@
 type PersonalizeListType = {
     question: string;
-    slider?: {
-        defaultvalue: number;
-        max: number;
-        step: number;
-    };
+    key?: string;
     checkbox?: { name: string; value: string }[];
     radio?: { name: string; value: string }[];
     text?: boolean;
@@ -12,6 +8,7 @@ type PersonalizeListType = {
 const personalizelist: PersonalizeListType[] = [
     {
         question: "어떤 장르의 게임을 좋아하시나요?",
+        key: "genres",
         checkbox: [
             { name: "액션", value: "action" },
             { name: "인디", value: "indie" },
@@ -33,76 +30,68 @@ const personalizelist: PersonalizeListType[] = [
         ],
     },
     {
-        question: "좋아하는 그래픽 스타일은 무엇인가요?",
-        checkbox: [
-            { name: "픽셀 아트", value: "pixel-art" },
-            { name: "2D", value: "2d" },
-            { name: "3D", value: "3d" },
-            { name: "만화 스타일", value: "comic-book" },
-            { name: "셀 셰이딩", value: "cel-shaded" },
-            { name: "레트로", value: "retro" },
-            { name: "미니멀리즘", value: "minimalist" },
-            { name: "사실적", value: "realistic" },
-            { name: "애니메이션 스타일", value: "anime" },
-            { name: "핸드 드로잉", value: "hand-drawn" },
-            { name: "사이버펑크", value: "cyberpunk" },
-            { name: "디스토피아", value: "dystopian" },
-            { name: "미래지향적", value: "futuristic" },
-            { name: "다크 판타지", value: "dark-fantasy" },
-            { name: "네온", value: "neon" },
-            { name: "흑백", value: "black-and-white" },
-            { name: "수채화", value: "watercolor" },
-        ],
-    },
-    {
         question: "어떤 게임 플랫폼을 자주 이용하시나요?",
+        key: "stores",
         checkbox: [
-            { name: "Steam", value: "steam" },
-            { name: "Epic Games", value: "epic-games" },
-            { name: "EA App", value: "ea-app" },
-            { name: "GOG", value: "gog" },
-            { name: "Xbox Store", value: "xbox-store" },
-            { name: "PlayStation Store", value: "playstation-store" },
-            { name: "Nintendo eShop", value: "nintendo" },
-            { name: "itch.io", value: "itch" },
-            { name: "Google Play", value: "google-play" },
-            { name: "App Store", value: "apple-appstore" },
+            { name: "Steam", value: "1" },
+            { name: "PlayStation Store", value: "3" },
+            { name: "Xbox Store", value: "2" },
+            { name: "App Store", value: "4" },
+            { name: "GOG", value: "5" },
+            { name: "Nintendo Store", value: "6" },
+            { name: "Xbox 360 Store", value: "7" },
+            { name: "Google Play", value: "8" },
+            { name: "itch.io", value: "9" },
+            { name: "Epic Games", value: "11" },
         ],
     },
     {
-        question: "선호하는 게임 플레이 시간은 언제인가요?",
-        radio: [
-            { name: "10시간 이하 (짧고 간단한 게임)", value: "short" },
-            { name: "10~30시간", value: "medium" },
-            { name: "30시간 이상 (장기 몰입형 게임)", value: "long" },
-            { name: "상관없음", value: "any" },
+        question: "좋아하는 그래픽 스타일은 무엇인가요?",
+        key: "tags",
+        checkbox: [
+            { name: "고어", value: "gore" },
+            { name: "판타지", value: "fantasy" },
+            { name: "픽셀 그래픽", value: "pixel-graphics" },
+            { name: "애니메이션", value: "anime" },
+            { name: "레트로", value: "retro" },
+            { name: "화려함", value: "colorful" },
+            { name: "귀여움", value: "cute" },
+            { name: "3D", value: "3d" },
+            { name: "사실적", value: "realistic" },
+            { name: "역사적", value: "historical" },
+            { name: "시네마틱", value: "clinermatic" },
+            { name: "미래적", value: "futuristic" },
+            { name: "중세", value: "medieval" },
+            { name: "가상현실", value: "vr" },
         ],
     },
     {
         question: "누구와 함께 게임을 하시나요?",
+        key: "tags",
         checkbox: [
-            { name: "혼자 플레이", value: "singleplayer" },
-            { name: "친구들과 온라인 멀티", value: "multiplayer-friends" },
-            { name: "불특정 다수와 멀티플레이", value: "online-multiplayer" },
-            { name: "로컬(같은 화면) 멀티", value: "local-multiplayer" },
+            { name: "온라인 협동", value: "online-co-op" },
+            { name: "온라인 멀티", value: "online-multiplayer" },
+            { name: "로컬 협동", value: "local-co-op" },
+            { name: "로컬 멀티", value: "local-multiplayer" },
         ],
     },
     {
         question: "게임에서 가장 중요하게 생각하는 요소는 무엇인가요?",
+        key: "tags",
         checkbox: [
-            { name: "스토리", value: "story" },
-            { name: "그래픽", value: "graphics" },
-            { name: "게임성/조작감", value: "gameplay" },
-            { name: "음악/사운드", value: "sound" },
-            { name: "도전 과제/성취감", value: "achievements" },
-            { name: "커스터마이징 요소", value: "customization" },
+            { name: "어려움", value: "difficult" },
+            { name: "컨트롤러 지원", value: "controller" },
+            { name: "플레이어 간 전투", value: "pvp" },
+            { name: "레벨 시스템", value: "includes-level-editor" },
+            { name: "캐릭터 커스터마이징", value: "character-customization" },
+            { name: "빠른 전개", value: "fast-paced" },
         ],
     },
     {
         question: "무료 게임을 선호하시나요?",
+        key: "tags",
         radio: [
-            { name: "네, 무료 게임만 하고 싶어요", value: "free" },
-            { name: "아니요, 유료 게임도 괜찮아요", value: "paid" },
+            { name: "네, 무료 게임만 하고 싶어요", value: "free-to-play" },
             { name: "상관없어요", value: "any" },
         ],
     },
