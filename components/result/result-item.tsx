@@ -72,21 +72,15 @@ export default function ResultItem({ games, index }: Props) {
                             <DialogTitle>{game.name}</DialogTitle>
                         </DialogHeader>
                         {/* 썸네일 이미지 */}
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-
                         <ScreenshotCarousel id={game.id} thumbnail={game.background_image} />
 
-
                         {/* 게임 설명 */}
-                        <DialogDescription>
-                            
-                        </DialogDescription>
-                        
+                        <DialogDescription></DialogDescription>
+
                         <GameInfo id={game.id} />
                         <StoreList id={game.id} />
                         <GameDescription id={game.id} />
-                        
-                        
+
                         <DialogFooter>(팝업 footer 영역)</DialogFooter>
                     </DialogContent>
                 </Dialog>
