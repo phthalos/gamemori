@@ -10,16 +10,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 
 export default function Personalize() {
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        //유효성 검사 구현
-    };
-
     type Answers = {
         genres: string[];
         stores: string[];
         tags: string[];
     };
+
+    // Input 유효성 오류 상태 관리
+    const [error, setError] = useState<boolean>(true);
 
     const [answers, setAnswers] = useState<Answers>({
         genres: [],
@@ -76,7 +74,7 @@ export default function Personalize() {
 
     return (
         <div className="w-6/12">
-            <form onSubmit={onSubmit} name="personalizeform" action="/result" method="post">
+            <form name="personalizeform" action={`/result?${query}`} method="post">
                 <ul className="flex flex-col gap-6 mb-5">
                     {personalizelist.map((value, index) => (
                         <li key={index}>
@@ -143,14 +141,14 @@ export default function Personalize() {
                                             ))}
                                         </RadioGroup>
                                     ) : value.text ? (
-                                        <FormInput />
+                                        <FormInput error={error} setError={setError} />
                                     ) : null}
                                 </CardContent>
                             </Card>
                         </li>
                     ))}
                 </ul>
-                <Button href={`/result?${query}`} type="submit" className="float-right">
+                <Button type="submit" className="float-right" disabled={error}>
                     결과 보기
                 </Button>
             </form>
