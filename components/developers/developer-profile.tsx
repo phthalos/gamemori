@@ -1,6 +1,7 @@
 import { DevelopersType } from "@/data/developers";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { ArrowUpRightFromSquareIcon } from "lucide-react";
 
 export default function DeveloperProfile({ name, github, roles }: DevelopersType) {
     return (
@@ -14,8 +15,19 @@ export default function DeveloperProfile({ name, github, roles }: DevelopersType
             </div>
             <ul>
                 {/* 이름 */}
-                <li className="flex gap-2 items-center text-xl font-bold my-1 justify-center">{name}</li>
-                {/* 역할 배지 (추후 수정) */}
+                <li className="flex gap-2 items-center text-xl font-bold justify-center">{name}</li>
+                {/* 깃허브 아이디 */}
+                <li>
+                    <Link
+                        href={`https://github.com/${github}`}
+                        target="_blank"
+                        className="flex gap-1 justify-center items-center text-sm mb-1 text-muted-foreground hover:underline"
+                    >
+                        {github}
+                        <ArrowUpRightFromSquareIcon size={11} />
+                    </Link>
+                </li>
+                {/* 역할 배지 */}
                 <li className="flex justify-center">
                     {roles.map((role, index) => (
                         <Badge key={index} variant="secondary" className="mr-1">
