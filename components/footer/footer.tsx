@@ -14,7 +14,9 @@ export default function Footer() {
         try {
             const response: Response = await fetch("https://api.github.com/repos/phthalos/gamemori/commits?per_page=1");
             if (!response.ok) {
-                throw new Error("최신 빌드 정보를 가져오지 못했습니다.");
+                console.log("최신 빌드 정보를 가져오지 못했습니다.");
+                return;
+                // throw new Error("최신 빌드 정보를 가져오지 못했습니다.");
             }
             const data = await response.json();
             if (data) {
