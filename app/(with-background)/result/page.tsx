@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import ResultItem from "@/components/result/result-item";
 import React, { useEffect, useState } from "react";
@@ -112,8 +113,8 @@ export default function Result() {
     return (
         <div className="w-full px-[10%] flex flex-col mb-24 gap-10">
             <div>
-                <h1>무슨 스토어 게임</h1>
-                <span className="text-gray-300">무슨무슨 스토어의 게임 목록에 대한 한줄설명을 입력합니다</span>
+                <h1>추천 스토어 게임</h1>
+                <span className="text-gray-300">게임모리가 당신을 위해 선별한 추천 게임 16종을 소개합니다.</span>
             </div>
             <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-3">
                 {Array.from({ length: 4 }).map((_, index) =>

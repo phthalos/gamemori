@@ -20,6 +20,7 @@ const supportedStores = [
     "epic-games",
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const storeMap: Record<string, string> = {
     steam: "Steam",
     "playstation-store": "PlayStation Store",

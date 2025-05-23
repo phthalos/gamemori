@@ -8,6 +8,7 @@ export default function DeveloperProfile({ name, github, roles }: DevelopersType
             {/* 프로필 사진 */}
             <div className="rounded-full w-32 h-32 overflow-clip mb-2 hover:scale-105 transition-all duration-300">
                 <Link href={`https://github.com/${github}`} target="_blank">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={`/images/developers/${name}.jpg`} alt={name} className="w-32 h-32 object-cover" />
                 </Link>
             </div>
