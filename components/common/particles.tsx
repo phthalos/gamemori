@@ -133,6 +133,7 @@ export default function RisingParticles() {
         <canvas
             ref={canvasRef}
             style={{
+                zIndex: -1,
                 display: "block",
                 position: "fixed",
                 top: 0,
