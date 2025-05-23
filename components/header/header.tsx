@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <div className="py-4 fixed w-full flex items-center justify-center">
+        <div className="py-4 fixed w-full flex items-center justify-center z-10">
             <div className="w-full mx-[10%] flex justify-between items-center">
                 <Logo />
                 {/* <span className="bg-gray-50/20 rounded-full px-3 py-2 -ml-10">테스트</span> */}
