@@ -16,7 +16,6 @@ export default function Personalize() {
         tags: string[];
     };
 
-    // Input 유효성 오류 상태 관리
     const [error, setError] = useState<boolean>(true);
 
     const [answers, setAnswers] = useState<Answers>({
@@ -28,7 +27,7 @@ export default function Personalize() {
     const buildQuery = () => {
         const queryObject: Record<string, string> = {};
 
-        //genres, stores 처리
+        // genres, stores 처리
         (["genres", "stores"] as (keyof Answers)[]).forEach((key) => {
             if (answers[key].length > 0) {
                 queryObject[key] = answers[key].join(",");
@@ -43,8 +42,6 @@ export default function Personalize() {
 
         return new URLSearchParams(queryObject).toString();
     };
-
-    const query = buildQuery();
 
     const onCheckboxChange = (key: keyof Answers, value: string, checked: boolean) => {
         setAnswers((prev) => {
@@ -72,9 +69,15 @@ export default function Personalize() {
         });
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const query = buildQuery();
+        window.location.href = `/result?${query}`;
+    };
+
     return (
         <div className="w-6/12">
-            <form name="personalizeform" action={`/result?${query}`} method="post">
+            <form name="personalizeform" onSubmit={handleSubmit}>
                 <ul className="flex flex-col gap-6 mb-5">
                     {personalizelist.map((value, index) => (
                         <li key={index}>
