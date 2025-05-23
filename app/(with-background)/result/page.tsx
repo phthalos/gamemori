@@ -10,9 +10,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Result() {
     // URL 쿼리 파라미터를 읽기 위한 훅
     const searchParams = useSearchParams();
-    const [genres, setGenres] = useState<string[]>([]);
-    const [stores, setStores] = useState<string[]>([]);
-    const [tags, setTags] = useState<string[]>([]);
+    const [_, setGenres] = useState<string[]>([]);
+    const [__, setStores] = useState<string[]>([]);
+    const [___, setTags] = useState<string[]>([]);
     const [games, setGames] = useState<GameTypes[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
